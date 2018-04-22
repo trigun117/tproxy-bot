@@ -1,0 +1,17 @@
+sudo: required
+
+language: go
+
+go:
+  - "1.10"
+
+addons:
+  apt:
+    packages:
+      - docker-ce
+
+script:
+  - CGO_ENABLED=0 go build
+  - docker build --rm -t trigun117/tproxy-bot .
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker push trigun117/tproxy-bot
