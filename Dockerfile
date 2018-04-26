@@ -2,7 +2,7 @@ FROM alpine
 
 COPY tproxy-bot .
 
-RUN apk add --no-cache ca-certificates &&\
-    chmod +x tproxy-bot
+RUN apk update &&\
+    apk add --no-cache ca-certificates openssl
 
 ENTRYPOINT [ "./tproxy-bot" ]
