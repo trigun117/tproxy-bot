@@ -3,6 +3,7 @@
 # tproxy-bot
 
 This is a telegram bot which fetch json with proxies and send to user
+
 ![example work of bot](https://github.com/trigun117/tproxy-bot/blob/master/image.JPG)
 
 # Getting Started
