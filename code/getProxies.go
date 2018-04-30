@@ -17,20 +17,14 @@ type Proxy struct {
 //GetProxies fetch json with proxies
 func GetProxies() (err error) {
 
-	re, err := http.Get(`http://telegram-socks.tk/json`)
-	if err != nil {
-		return
-	}
-
-	defer re.Body.Close()
+	re, _ := http.Get(`http://telegram-socks.tk/json`)
 
 	//read bytes
-	b, err := ioutil.ReadAll(re.Body)
-	if err != nil {
-		return
-	}
+	b, _ := ioutil.ReadAll(re.Body)
 
 	//unmarshal json
 	json.Unmarshal(b, &P)
+
+	re.Body.Close()
 	return
 }
