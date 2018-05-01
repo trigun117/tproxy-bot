@@ -47,7 +47,7 @@ func start() {
 			case "SET English":
 
 				//Edit Text
-				editText := tgbotapi.NewEditMessageText(int64(int64(update.CallbackQuery.From.ID)), update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
+				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
 				bot.Send(editText)
 
 				//Edit buttons
