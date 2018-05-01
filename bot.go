@@ -47,7 +47,7 @@ func start() {
 			case "SET English":
 
 				//Edit Text
-				editText := tgbotapi.NewEditMessageText(update.CallbackQuery.From.ID, update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
+				editText := tgbotapi.NewEditMessageText(int64(int64(update.CallbackQuery.From.ID)), update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
 				bot.Send(editText)
 
 				//Edit buttons
@@ -55,13 +55,13 @@ func start() {
 				keyb := tgbotapi.NewInlineKeyboardMarkup(butt)
 
 				//Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(update.CallbackQuery.From.ID, update.CallbackQuery.Message.MessageID, keyb)
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, keyb)
 				bot.Send(editMarkUp)
 
 			case "SET Russian":
 
 				//Edit Text
-				editText := tgbotapi.NewEditMessageText(update.CallbackQuery.From.ID, update.CallbackQuery.Message.MessageID, "Привет, я TProxy бот и с помощью меня ты можешь подключиться к прокси. Чтобы получить новый прокси отправь /start, выбери язык и жми на кнопку подключения. Так же ты можешь перейти на сайт, где находятся прокси.")
+				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Привет, я TProxy бот и с помощью меня ты можешь подключиться к прокси. Чтобы получить новый прокси отправь /start, выбери язык и жми на кнопку подключения. Так же ты можешь перейти на сайт, где находятся прокси.")
 				bot.Send(editText)
 
 				//Edit buttons
@@ -69,7 +69,7 @@ func start() {
 				keyb := tgbotapi.NewInlineKeyboardMarkup(butt)
 
 				//Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(update.CallbackQuery.From.ID, update.CallbackQuery.Message.MessageID, keyb)
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, keyb)
 				bot.Send(editMarkUp)
 
 			}
