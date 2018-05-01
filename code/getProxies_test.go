@@ -5,7 +5,7 @@ import (
 )
 
 func TestGetProxies(t *testing.T) {
-	if err := GetProxies(); err != nil {
+	if err := getProxies(); err != nil {
 		t.Fail()
 	}
 }

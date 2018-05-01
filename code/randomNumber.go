@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//Random return random number
-func Random(min, max int) (number int) {
+//random return random number
+func random(min, max int) (number int) {
 	rand.Seed(time.Now().UnixNano())
 	number = rand.Intn(max-min) + min
 	return

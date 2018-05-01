@@ -7,7 +7,7 @@ import (
 )
 
 //P store unmarshaled proxies
-var P Proxy
+var p Proxy
 
 //Proxy is a struct which contain proxies
 type Proxy struct {
@@ -15,7 +15,7 @@ type Proxy struct {
 }
 
 //GetProxies fetch json with proxies
-func GetProxies() (err error) {
+func getProxies() (err error) {
 
 	re, _ := http.Get(`http://telegram-socks.tk/json`)
 
@@ -23,7 +23,7 @@ func GetProxies() (err error) {
 	b, _ := ioutil.ReadAll(re.Body)
 
 	//unmarshal json
-	json.Unmarshal(b, &P)
+	json.Unmarshal(b, &p)
 
 	re.Body.Close()
 	return
