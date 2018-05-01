@@ -11,8 +11,6 @@ This is a telegram bot which fetch json with proxies and send to user
 For start using bot, build docker image from Dockerfile and run with this command
 ```
 docker run \
--p 8443:8443 \
--e IP=server_ip_for_webhook \
 -e TOKEN=set_your_bot_token \
 --restart always \
 -d your_image
@@ -20,8 +18,6 @@ docker run \
 Or with database
 ```
 docker run \
--p 8443:8443 \
--e IP=server_ip_for_webhook \
 -e TOKEN=set_your_bot_token \
 -e HOST=set_your_database_host \
 -e PORT=set_your_database_port \
