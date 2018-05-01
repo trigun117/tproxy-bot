@@ -3,28 +3,22 @@ package main
 import (
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/trigun117/tproxy-bot/code"
-	//"net/http"
 	"os"
 )
 
-func start() {
+func createMarkup(btn, btn1, btn2, btn3 string) tgbotapi.InlineKeyboardMarkup {
+	row := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn, btn1), tgbotapi.NewInlineKeyboardButtonURL(btn2, btn3))
+	return tgbotapi.NewInlineKeyboardMarkup(row)
+}
+
+func startBot() {
 
 	//Create bot
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TOKEN"))
 	if err != nil {
 		panic(err)
 	}
-	/*
-		//Set webhook
-		_, err = bot.SetWebhook(tgbotapi.NewWebhookWithCert("https://"+os.Getenv("IP")+":8443/"+bot.Token, "cert.pem"))
-		if err != nil {
-			panic(err)
-		}
 
-		//Listening for updates
-		updates := bot.ListenForWebhook("/" + bot.Token)
-		go http.ListenAndServeTLS(":8443", "cert.pem", "key.pem", nil)
-	*/
 	config := tgbotapi.NewUpdate(0)
 	updates, _ := bot.GetUpdatesChan(config)
 
@@ -37,12 +31,13 @@ func start() {
 
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Select Language")
 
-			butt := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData("Russian.", "SET Russian"), tgbotapi.NewInlineKeyboardButtonData("English.", "SET English"))
-			keyb := tgbotapi.NewInlineKeyboardMarkup(butt)
+			keyb := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData("Russian.", "SET Russian"), tgbotapi.NewInlineKeyboardButtonData("English.", "SET English")))
 			msg.ReplyMarkup = &keyb
 
 			bot.Send(msg)
+
 		} else if update.CallbackQuery != nil {
+
 			switch update.CallbackQuery.Data {
 			case "SET English":
 
@@ -50,12 +45,8 @@ func start() {
 				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
 				bot.Send(editText)
 
-				//Edit buttons
-				butt := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Connect a proxy.", code.GetRandomProxy()), tgbotapi.NewInlineKeyboardButtonURL("Go to the site.", "http://telegram-socks.tk/"))
-				keyb := tgbotapi.NewInlineKeyboardMarkup(butt)
-
 				//Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, keyb)
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Connect a proxy.", code.GetRandomProxy(), "Go to the site.", "http://telegram-socks.tk/"))
 				bot.Send(editMarkUp)
 
 			case "SET Russian":
@@ -64,12 +55,8 @@ func start() {
 				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Привет, я TProxy бот и с помощью меня ты можешь подключиться к прокси. Чтобы получить новый прокси отправь /start, выбери язык и жми на кнопку подключения. Так же ты можешь перейти на сайт, где находятся прокси.")
 				bot.Send(editText)
 
-				//Edit buttons
-				butt := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Подключить прокси.", code.GetRandomProxy()), tgbotapi.NewInlineKeyboardButtonURL("Перейти на сайт.", "http://telegram-socks.tk/"))
-				keyb := tgbotapi.NewInlineKeyboardMarkup(butt)
-
 				//Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, keyb)
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить прокси.", code.GetRandomProxy(), "Перейти на сайт.", "http://telegram-socks.tk/"))
 				bot.Send(editMarkUp)
 
 			}
