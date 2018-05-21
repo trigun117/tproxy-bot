@@ -13,7 +13,7 @@ func createMarkup(btn, btn1, btn2, btn3 string) tgbotapi.InlineKeyboardMarkup {
 
 func startBot() {
 
-	//Create bot
+	// Create bot
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TOKEN"))
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func startBot() {
 
 		if update.Message != nil && update.Message.Command() == "start" {
 
-			//Collect data to database
+			// Collect data to database
 			collectData(update.Message.Chat.UserName, update.Message.Chat.ID, update.Message.Text)
 
 			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Select Language")
@@ -41,21 +41,21 @@ func startBot() {
 			switch update.CallbackQuery.Data {
 			case "SET English":
 
-				//Edit Text
+				// Edit Text
 				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Hi, I'm a TProxy bot and with the help of me you can connect to a proxy. To get a new proxy send /start, select the language and click on the connection button. You can also go to the site where the proxy is located.")
 				bot.Send(editText)
 
-				//Edit Markup
+				// Edit Markup
 				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Connect a proxy.", code.GetRandomProxy(), "Go to the site.", "http://telegram-socks.tk/"))
 				bot.Send(editMarkUp)
 
 			case "SET Russian":
 
-				//Edit Text
+				// Edit Text
 				editText := tgbotapi.NewEditMessageText(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, "Привет, я TProxy бот и с помощью меня ты можешь подключиться к прокси. Чтобы получить новый прокси отправь /start, выбери язык и жми на кнопку подключения. Так же ты можешь перейти на сайт, где находятся прокси.")
 				bot.Send(editText)
 
-				//Edit Markup
+				// Edit Markup
 				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить прокси.", code.GetRandomProxy(), "Перейти на сайт.", "http://telegram-socks.tk/"))
 				bot.Send(editMarkUp)
 
