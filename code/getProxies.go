@@ -17,7 +17,7 @@ type Proxy struct {
 // GetProxies fetch json with proxies
 func getProxies() (err error) {
 
-	re, _ := http.Get(`http://tproxy.gq/json`)
+	re, _ := http.Get(`http://tproxyt.tk/json`)
 
 	//read bytes
 	b, _ := ioutil.ReadAll(re.Body)
