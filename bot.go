@@ -4,6 +4,7 @@ import (
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/trigun117/tproxy-bot/code"
 	"os"
+	"runtime"
 )
 
 func createMarkup(btn, btn1, btn2, btn3 string) tgbotapi.InlineKeyboardMarkup {
@@ -23,6 +24,8 @@ func startBot() {
 	updates, _ := bot.GetUpdatesChan(config)
 
 	for update := range updates {
+
+		defer runtime.GC()
 
 		if update.Message != nil && update.Message.Command() == "start" {
 

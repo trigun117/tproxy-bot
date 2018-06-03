@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"net/url"
+	"os"
 )
 
 // P store unmarshaled proxies
@@ -14,10 +16,16 @@ type Proxy struct {
 	Proxies []string
 }
 
+var (
+	link     = os.Getenv("URL")
+	password = os.Getenv("PASS")
+	field    = os.Getenv("FI")
+)
+
 // GetProxies fetch json with proxies
 func getProxies() (err error) {
 
-	re, _ := http.Get(`http://tproxyt.tk/json`)
+	re, _ := http.PostForm(link, url.Values{field: {password}})
 
 	//read bytes
 	b, _ := ioutil.ReadAll(re.Body)
