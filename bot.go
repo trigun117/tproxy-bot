@@ -7,8 +7,13 @@ import (
 	"runtime"
 )
 
-func createMarkup(btn, btn1, btn2, btn3 string) tgbotapi.InlineKeyboardMarkup {
-	row := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn, btn1), tgbotapi.NewInlineKeyboardButtonURL(btn2, btn3))
+var (
+	mtlink = os.Getenv("MTL")
+	link   = os.Getenv("LINK")
+)
+
+func createMarkup(btn, btn1, btn2, btn3, btn4, btn5 string) tgbotapi.InlineKeyboardMarkup {
+	row := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn, btn1), tgbotapi.NewInlineKeyboardButtonURL(btn2, btn3), tgbotapi.NewInlineKeyboardButtonURL(btn4, btn5))
 	return tgbotapi.NewInlineKeyboardMarkup(row)
 }
 
@@ -49,7 +54,7 @@ func startBot() {
 				bot.Send(editText)
 
 				// Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Connect a proxy.", code.GetRandomProxy(), "Go to the site.", os.Getenv("LINK")))
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Enable MTProto.", mtlink, "Open site.", link, "Enable proxy.", code.GetRandomProxy()))
 				bot.Send(editMarkUp)
 
 			case "SET Russian":
@@ -59,7 +64,7 @@ func startBot() {
 				bot.Send(editText)
 
 				// Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить прокси.", code.GetRandomProxy(), "Перейти на сайт.", os.Getenv("LINK")))
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить MTProto.", mtlink, "Перейти на сайт.", link, "Подключить прокси.", code.GetRandomProxy()))
 				bot.Send(editMarkUp)
 
 			}
