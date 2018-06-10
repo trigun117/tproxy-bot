@@ -12,6 +12,11 @@ For start using bot, build docker image from Dockerfile and run with this comman
 ```
 docker run \
 -e TOKEN=set_your_bot_token \
+-e LINK=site_link \
+-e MTL=mtproto_link \
+-e URL=site_json_url \
+-e PASS=site_json_password \
+-e FI=site_json_field \
 --restart always \
 -d your_image
 ```
@@ -25,6 +30,11 @@ docker run \
 -e PASSWORD=set_your_database_password \
 -e DBNAME=set_your_database_name \
 -e SSLMODE=set_your_database_sslmode(disable or enable, default disable) \
+-e LINK=site_link \
+-e MTL=mtproto_link \
+-e URL=site_json_url \
+-e PASS=site_json_password \
+-e FI=site_json_field \
 --restart always \
 -d your_image
 ```
