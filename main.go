@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	if os.Getenv("CREATE_TABLE") == "yes" {
+	if os.Getenv("TABLE") == "yes" {
 		createTable()
 	}
 

@@ -41,7 +41,41 @@ docker run \
 
 if you need to create table add
 ```
--e CREATE_TABLE=yes
+-e TABLE=yes
+```
+# Docker-Compose
+
+Set environment variables in docker-compose.yml
+
+```
+services:
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: set_your_database_password
+  
+  bot:
+    image: trigun117/tproxy-bot
+    environment:
+      TOKEN: set_your_bot_token
+      TABLE: "yes"
+      HOST: db
+      PORT: 5432
+      USER: postgres
+      PASSWORD: set_your_database_password
+      DBNAME: postgres
+      SSLMODE: disable
+      LINK: site_link
+      MTL: mtproto_link
+      URL: site_json_url
+      PASS: site_json_password
+      FI: site_json_field
+```
+And launch with this command
+
+```
+docker-compose up --build
 ```
 
 # License
