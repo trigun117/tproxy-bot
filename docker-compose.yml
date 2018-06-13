@@ -6,6 +6,8 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: set_your_database_password
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
   
   bot:
     image: trigun117/tproxy-bot
@@ -23,3 +25,6 @@ services:
       URL: site_json_url
       PASS: site_json_password
       FI: site_json_field
+
+volumes:
+  pgdata: {}
