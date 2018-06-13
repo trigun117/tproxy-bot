@@ -4,6 +4,7 @@ services:
 
   db:
     image: postgres
+    restart: always
     environment:
       POSTGRES_PASSWORD: set_your_database_password
     volumes:
@@ -11,6 +12,7 @@ services:
   
   bot:
     image: trigun117/tproxy-bot
+    restart: always
     environment:
       TOKEN: set_your_bot_token
       TABLE: create
