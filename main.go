@@ -2,11 +2,14 @@ package main
 
 import (
 	"os"
+	"time"
 )
 
 func main() {
 
-	if os.Getenv("TABLE") == "yes" {
+	time.Sleep(60 * time.Second)
+
+	if os.Getenv("TABLE") == "create" {
 		createTable()
 	}
 

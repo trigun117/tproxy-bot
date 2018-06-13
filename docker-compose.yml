@@ -11,7 +11,7 @@ services:
     image: trigun117/tproxy-bot
     environment:
       TOKEN: set_your_bot_token
-      TABLE: "yes"
+      TABLE: create
       HOST: db
       PORT: 5432
       USER: postgres
