@@ -53,7 +53,7 @@ func startBot() {
 				bot.Send(editText)
 
 				// Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Enable MTProto", mtlink, "Open site", link, "Enable proxy", code.GetRandomProxy()))
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Enable MTProto", mtlink, "Open site", link, "Enable SOCKS", code.GetRandomProxy()))
 				bot.Send(editMarkUp)
 
 			case "SET Russian":
@@ -63,7 +63,7 @@ func startBot() {
 				bot.Send(editText)
 
 				// Edit Markup
-				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить MTProto", mtlink, "Перейти на сайт", link, "Подключить прокси", code.GetRandomProxy()))
+				editMarkUp := tgbotapi.NewEditMessageReplyMarkup(int64(update.CallbackQuery.From.ID), update.CallbackQuery.Message.MessageID, createMarkup("Подключить MTProto", mtlink, "Перейти на сайт", link, "Подключить SOCKS", code.GetRandomProxy()))
 				bot.Send(editMarkUp)
 
 			}
