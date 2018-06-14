@@ -13,8 +13,7 @@ var (
 )
 
 func createMarkup(btn, btn1, btn2, btn3, btn4, btn5 string) tgbotapi.InlineKeyboardMarkup {
-	row := tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn, btn1), tgbotapi.NewInlineKeyboardButtonURL(btn2, btn3), tgbotapi.NewInlineKeyboardButtonURL(btn4, btn5))
-	return tgbotapi.NewInlineKeyboardMarkup(row)
+	return tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn+" \xE2\x93\x82", btn1)), tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn2+" \xF0\x9F\x8C\x90", btn3)), tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL(btn4+" \xF0\x9F\x8C\x95", btn5)))
 }
 
 func startBot() {
