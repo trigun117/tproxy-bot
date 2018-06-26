@@ -13,7 +13,6 @@ addons:
 script:
   - chmod +x test.sh
   - ./test.sh
-  - CGO_ENABLED=0 go build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
