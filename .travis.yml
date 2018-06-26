@@ -3,7 +3,7 @@ sudo: required
 language: go
 
 go:
-  - "1.10"
+  - master
 
 addons:
   apt:
@@ -14,9 +14,14 @@ script:
   - chmod +x test.sh
   - ./test.sh
   - CGO_ENABLED=0 go build
-  - docker build --rm -t trigun117/tproxy-bot .
-  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-  - docker push trigun117/tproxy-bot
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - CGO_ENABLED=0 go build
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: sh build_docker.sh
+  on:
+    branch: master
