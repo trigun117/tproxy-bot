@@ -11,8 +11,7 @@ addons:
       - docker-ce
 
 script:
-  - chmod +x test.sh
-  - ./test.sh
+  - go test ./code -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
